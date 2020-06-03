@@ -158,16 +158,16 @@ std::string select(std::vector<std::string> const& l, Settings const& set) {
         if(ch == KEY_BACKSPACE && line.length() > 0) {
             line.pop_back();
             filter(l, line, set, filtered);
-            selected = std::min(selected, (int)filtered.size());
+            selected = std::min(selected, (int)filtered.size() - 1);
         }
         else if(ch == KEY_DOWN || ch == KEY_RIGHT) {
-            selected = std::min(selected + 1, (int)filtered.size());
+            selected = std::min(selected + 1, (int)filtered.size() - 1);
         }
         else if(ch == KEY_UP || ch == KEY_LEFT) {
             selected = std::max(selected - 1, 0);
         }
         else if(ch == KEY_NPAGE) {
-            selected = std::min(selected + LINES - 1, (int)filtered.size());
+            selected = std::min(selected + LINES - 1, (int)filtered.size() - 1);
         }
         else if(ch == KEY_PPAGE) {
             selected = std::max(selected - LINES + 1, 0);
@@ -183,18 +183,18 @@ std::string select(std::vector<std::string> const& l, Settings const& set) {
         else if(ch == 23) {
             rm_last_word(line);
             filter(l, line, set, filtered);
-            selected = std::min(selected, (int)filtered.size());
+            selected = std::min(selected, (int)filtered.size() - 1);
         }
         else if(ch == '\t') {
             line = filtered[selected];
             selected = 0;
             filter(l, line, set, filtered);
-            selected = std::min(selected, (int)filtered.size());
+            selected = std::min(selected, (int)filtered.size() - 1);
         }
         else if(isprint(ch)) {
             line += ch;
             filter(l, line, set, filtered);
-            selected = std::min(selected, (int)filtered.size());
+            selected = std::min(selected, (int)filtered.size() - 1);
         }
 
         clear_screen();
