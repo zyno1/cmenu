@@ -32,9 +32,34 @@ Options
 
 Both input and output file can be named pipes.
 
+(Note that lines that longer than the terminal width will be cut off.)
+
 Example:
 ```
-cmenu --in file_containing_a_list --out result --ci --prompt "cmenu: "
+cmenu --in in --out out
 ```
 
-(Note that lines that longer than the terminal width will be cut off.)
+With the file out containing:
+```
+Lorem
+ipsu
+dolo
+si
+amet
+consectetu
+adipiscin
+elit
+Maecena
+sed
+```
+
+Will show the following in the terminal
+
+![1.png](screenshots/1.png)
+
+If we type the letter `i` and then twice the key `down` we get:
+
+![2.png](screenshots/2.png)
+
+If we press enter the file `out` will containt the string `adipiscin` if we instead
+chose to type Ctrl-X (or escape) the `out` file will be empty.
